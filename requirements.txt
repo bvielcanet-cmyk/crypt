@@ -4,4 +4,4 @@ google-generativeai
 pandas
 pandas-ta
 supabase
-
+numpy
