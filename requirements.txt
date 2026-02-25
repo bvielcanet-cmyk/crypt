@@ -1,7 +1,8 @@
 streamlit
 ccxt
-google-generativeai
 pandas
-pandas-ta
+google-generativeai
+matplotlib
+pillow
 supabase
 numpy
