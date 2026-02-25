@@ -1,0 +1,28 @@
+name: Gemini Sentinel 24/7
+on:
+  schedule:
+    - cron: '0 * * * *'  # S'exécute toutes les heures pile (00:00, 01:00, etc.)
+  workflow_dispatch:      # Permet de le lancer manuellement pour tester
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/set_image@v4 # Installe Python automatiquement
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install ccxt pandas google-generativeai matplotlib pillow supabase
+
+      - name: Run Sentinel Worker
+        env:
+          GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        run: python worker.py
