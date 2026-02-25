@@ -1,8 +1,8 @@
 name: Gemini Sentinel 24/7
 on:
   schedule:
-    - cron: '0 * * * *'  # S'exécute toutes les heures pile (00:00, 01:00, etc.)
-  workflow_dispatch:      # Permet de le lancer manuellement pour tester
+    - cron: '0 * * * *'  # S'exécute toutes les heures
+  workflow_dispatch:      # Permet de le lancer manuellement
 
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/set_image@v4 # Installe Python automatiquement
+        uses: actions/setup-python@v4  # <-- LA CORRECTION EST ICI
         with:
           python-version: '3.10'
 
